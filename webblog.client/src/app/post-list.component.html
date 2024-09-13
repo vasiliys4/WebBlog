@@ -1,0 +1,5 @@
+<a [routerLink]="['post', 1]" class="btn btn-sm btn-primary">post</a>
+
+<ng-container *ngFor="let post of posts">
+    <h1>{{post.name}}</h1>  
+</ng-container>
