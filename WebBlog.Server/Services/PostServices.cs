@@ -34,10 +34,9 @@ namespace WebBlog.Server.Services
             await repositoryPost.CreatePost(postView.ToPost());
             return postView;
         }
-        public async Task<PostViewModel> DeletePostAsync(PostViewModel postView)
+        public async Task DeletePostAsync(int id)
         {
-            await repositoryPost.DeletePost(postView.ToPost());
-            return postView;
+            await repositoryPost.DeletePost(id);
         }
         public async Task<PostViewModel> UpdatePostAsync(PostViewModel postView)
         {

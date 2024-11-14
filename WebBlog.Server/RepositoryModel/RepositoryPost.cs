@@ -18,8 +18,9 @@ namespace WebBlog.Server.RepositoryModel
             return post;
         }
 
-        public async Task<Post> DeletePost(Post post)
+        public async Task<Post> DeletePost(int id)
         {
+            var post = await GetPostById(id);
             _dbContext.Posts.Remove(post);
             await _dbContext.SaveChangesAsync();
             return post;

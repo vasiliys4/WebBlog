@@ -11,23 +11,23 @@ namespace WebBlog.Server.Extention
 
             return new PostViewModel
             {
-                PostViewModelId = model.PostId,
-                PostText = content.TextPost,
-                PostTitle = model.Title,
-                ImgPath = content.ImagePath
+                id = model.PostId,
+                text = content.TextPost,
+                name = model.Title,
+                imgPath = content.ImagePath
             };
         }
         public static Post ToPost(this PostViewModel model)
         {
             var content = new ContentPost 
             {
-                ImagePath = model.ImgPath,
-                TextPost = model.PostText
+                ImagePath = model.imgPath,
+                TextPost = model.text
             };
             return new Post
             {
-                PostId = model.PostViewModelId,
-                Title = model.PostTitle,
+                PostId = model.id,
+                Title = model.name,
                 Content = content,
             };
         }

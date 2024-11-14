@@ -6,7 +6,7 @@ namespace WebBlog.Server.RepositoryModel
     {
         Task<Post> CreatePost(Post post);
         Task<Post> UpdatePost(Post post);
-        Task<Post> DeletePost(Post post);
+        Task<Post> DeletePost(int id);
         Task<Post> GetPostById(int id);
         Task<List<Post>> GetAllPost();
     }

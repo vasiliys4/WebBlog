@@ -1,5 +1,11 @@
-<a [routerLink]="['post', 1]" class="btn btn-sm btn-primary">post</a>
-
 <ng-container *ngFor="let post of posts">
-    <h1>{{post.name}}</h1>  
+  <a [routerLink]="['post', post.id]" class="btn btn-sm btn-primary">post {{post.id}}</a>
+  <h2>{{ post.id }}</h2>
+  <ng-content>[( ngModel )]="post.name"</ng-content>
+  <p>{{post.name}}</p>
+  <a [routerLink]="['edit', post.id]" class="btn btn-sm btn-primary">Изменить</a>
+  <button (click)="delete(post.id)" class="btn btn-sm btn-danger">Удалить</button>
 </ng-container>
+
+
+<a routerLink="/create" class="nav-link">Добавить</a>

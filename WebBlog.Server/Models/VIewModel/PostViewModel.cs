@@ -2,10 +2,10 @@
 {
     public class PostViewModel
     {
-        public int PostViewModelId { get; set; }
-        public string? PostTitle { get; set; }
-        public string? PostText { get; set; }
-        public string? ImgPath {  get; set; }
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? text { get; set; }
+        public string? imgPath {  get; set; }
 
     }
 }

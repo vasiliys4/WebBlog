@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from './data.service';
 import { Post } from './post';
- 
+
 @Component({
-  templateUrl: './post-single.component.html',
-  providers: [DataService]
+  templateUrl: './post-edit.component.html'
 })
-export class PostSingleComponent implements OnInit {
+export class PostEditComponent implements OnInit {
 
   id: number;
-  post: Post;
+  post: Post;    // изменяемый объект
   loaded: boolean = false;
 
-  constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
+  constructor(private dataService: DataService, private router: Router, activeRoute: ActivatedRoute) {
     this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
   }
 
@@ -24,5 +23,9 @@ export class PostSingleComponent implements OnInit {
           this.post = data;
           if (this.post != null) this.loaded = true;
         });
+  }
+
+  save() {
+    this.dataService.updatePost(this.post).subscribe(data => this.router.navigateByUrl("/"));
   }
 }

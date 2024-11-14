@@ -14,12 +14,12 @@ namespace WebBlog.Server.Controllers
             this.postServices = postServices;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetPosts()
         {
             var posts = await postServices.GetAllPostsAsync();
             return Ok(posts);
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
             var post = await postServices.GetPostAsync(id);
@@ -37,10 +37,10 @@ namespace WebBlog.Server.Controllers
             await postServices.UpdatePostAsync(post);
             return Ok(post);
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeletePost(PostViewModel post)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost(int id)
         {
-            await postServices.DeletePostAsync(post);
+            await postServices.DeletePostAsync(id);
             return Ok();
         }
     }
