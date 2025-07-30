@@ -1,6 +1,6 @@
 ﻿using WebBlog.Server.Models.Model;
 
-namespace WebBlog.Server.RepositoryModel
+namespace WebBlog.Application.Interfaces
 {
     public interface IRepositoryPost
     {

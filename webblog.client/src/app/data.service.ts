@@ -24,8 +24,8 @@ export class DataService {
   createPost(post: Post) {
     return this.https.post(this.url, post);
   }
-  updatePost(post: Post) {
-    return this.https.put(this.url, post);
+  editPost(post: Post) {
+    return this.https.patch(this.url, post);
   }
   deletePost(id: number): Observable<Post> {
     return this.https.delete<Post>(this.url + '/' + id);

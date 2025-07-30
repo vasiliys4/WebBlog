@@ -8,9 +8,16 @@
 <body>
   <div *ngIf="loaded">
     <h2>Изменение данных о товаре</h2>
-    <post-form [(ngModel)]="post"></post-form>
     <div class="form-group">
-      <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
+      <label>name</label>
+      <input type="text" [(ngModel)]="post.name" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label>text</label>
+      <input type="text" [(ngModel)]="post.text" class="form-control" />
+    </div>
+    <div class="form-group">
+      <button (click)="save()" class="btn btn-sm btn-danger">Сохранить Изминения</button>
     </div>
   </div>
   <a routerLink="/" class="nav-link">Назад к списку</a>

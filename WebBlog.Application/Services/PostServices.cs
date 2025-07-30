@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using WebBlog.Application.Interfaces;
 using WebBlog.Server.Extention;
-using WebBlog.Server.Models.Model;
 using WebBlog.Server.Models.VIewModel;
-using WebBlog.Server.RepositoryModel;
 
 namespace WebBlog.Server.Services
 {
     public class PostServices
     {
         private readonly IRepositoryPost repositoryPost;
-        public PostServices(IRepositoryPost repository)
-        {
-            repositoryPost = repository;
-        }
+        //private IWebHostEnvironment appEnvironment;
+        public PostServices(IRepositoryPost repository) => repositoryPost = repository;
         public async Task<PostViewModel> GetPostAsync(int id)
         {
             var post = await repositoryPost.GetPostById(id);
@@ -29,8 +25,14 @@ namespace WebBlog.Server.Services
             }
             return postViewModels;
         }
-        public async Task<PostViewModel> CreatePsotAsync(PostViewModel postView)
+        public async Task<PostViewModel> CreatePostAsync(PostViewModel postView)
         {
+            //FileInfo file = new FileInfo(postView.imgPath);
+            //if (file != null)
+            //{
+            //    string path = "/images/post/" + file.Name;
+            //    file.CopyTo(new FileStream(appEnvironment.WebRootPath + path, FileMode.Create));
+            //}
             await repositoryPost.CreatePost(postView.ToPost());
             return postView;
         }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DataService } from './data.service';
 import { Post } from './post';
 
+
 @Component({
   templateUrl: './post-create.component.html',
   providers: [DataService],

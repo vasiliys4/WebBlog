@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebBlog.Server.Data;
 using WebBlog.Server.Models.Model;
+using WebBlog.Application.Interfaces;
 
 namespace WebBlog.Server.RepositoryModel
 {
@@ -21,7 +22,9 @@ namespace WebBlog.Server.RepositoryModel
         public async Task<Post> DeletePost(int id)
         {
             var post = await GetPostById(id);
+            var content = await _dbContext.ContentPosts.FirstOrDefaultAsync(c => c.ContentPostId == post.Content.ContentPostId);
             _dbContext.Posts.Remove(post);
+            _dbContext.ContentPosts.Remove(content);
             await _dbContext.SaveChangesAsync();
             return post;
         }

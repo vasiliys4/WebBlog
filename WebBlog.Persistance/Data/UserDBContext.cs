@@ -5,9 +5,10 @@ namespace WebBlog.Server.Data
 {
     public class UserDBContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
         public UserDBContext(DbContextOptions<UserDBContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

@@ -4,8 +4,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Server", "WebBlog.Server\WebBlog.Server.csproj", "{79B6990B-2F8C-47EA-9CEE-4901BEDB9876}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6} = {2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333} = {31EE8814-B38D-4275-8BD1-B5A6B844D333}
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D} = {6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C} = {976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}
+		{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11} = {BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}
+	EndProjectSection
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "webblog.client", "webblog.client\webblog.client.esproj", "{CC36B137-5A59-4E22-B9D2-1D3C6031A22B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Auth", "PaswordHasher\WebBlog.Auth.csproj", "{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333} = {31EE8814-B38D-4275-8BD1-B5A6B844D333}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Infrastructure", "WebBlog.Abstraction\WebBlog.Infrastructure.csproj", "{31EE8814-B38D-4275-8BD1-B5A6B844D333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Core", "WebBlog.Core\WebBlog.Core.csproj", "{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Application", "WebBlog.Application\WebBlog.Application.csproj", "{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D} = {6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlog.Persistance", "WebBlog.Persistance\WebBlog.Persistance.csproj", "{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D} = {6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C} = {976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +50,26 @@ Global
 		{CC36B137-5A59-4E22-B9D2-1D3C6031A22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC36B137-5A59-4E22-B9D2-1D3C6031A22B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC36B137-5A59-4E22-B9D2-1D3C6031A22B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6C75C6-3BA2-4678-ABFD-39299BEE8C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31EE8814-B38D-4275-8BD1-B5A6B844D333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C4F0D8C-8CD6-4ACE-9C1E-593CC7E2F74D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976D33B3-F0C4-4FF6-AFD8-4F7BBFB60A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F5D2B5C-DEEF-4943-A084-DE8DEE7030E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

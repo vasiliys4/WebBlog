@@ -3,5 +3,6 @@ export class Post {
     public id?: number,
     public name?: string,
     public text?: string,
-    public imgPath?: string) { }
+    public imgPath?: string,
+    public file?: File) { }
 }

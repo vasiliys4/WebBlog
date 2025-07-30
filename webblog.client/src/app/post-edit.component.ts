@@ -26,6 +26,6 @@ export class PostEditComponent implements OnInit {
   }
 
   save() {
-    this.dataService.updatePost(this.post).subscribe(data => this.router.navigateByUrl("/"));
+    this.dataService.editPost(this.post).subscribe(data => this.router.navigateByUrl("/"));
   }
 }

@@ -20,8 +20,9 @@ const appRoutes: Routes = [
   { path: '', component: PostListComponent },
   { path: 'post/:id', component: PostSingleComponent },
   { path: 'create', component: PostCreateComponent },
+  { path: 'edit/:id', component: PostEditComponent },
   { path: '**', component: NotFoundComponent },
-  { path: 'edit/:id', component: PostEditComponent }
+
 ];
 
 @NgModule({

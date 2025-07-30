@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,7 +9,20 @@
 <body>
   <div>
     <h2>Добавление нового товара</h2>
-    <post-form [(ngModel)]="post"></post-form>
+    <div class="form-group">
+      <div class="form-group">
+        <label>name</label>
+        <input type="text" [(ngModel)]="post.name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>text</label>
+        <input type="text" [(ngModel)]="post.text" class="form-control" />
+      </div>
+      <div>
+        <label>картинка</label>
+        <input type="file" [(ngModel)]="post.imgPath" class="form-control" />
+      </div>
+    </div>
     <div class="form-group">
       <input type="button" value="Сохранить" (click)="save()" class="btn btn-success" />
       <a routerLink="/" class="btn btn-warning">Отмена</a>

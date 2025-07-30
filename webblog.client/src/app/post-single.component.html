@@ -1,3 +1,10 @@
 <body>
-    <h2>{{ post.name }}</h2>
+  <div class="card w-75 border-dark mb-3" style="max-width: 26rem;">
+    <h5 class="card-header">{{ post.name }}</h5>
+    <div class="card-body">
+      <p class="card-text">{{ post.text }}</p>
+      <p class="card-text">{{ post.imgPath }}</p>
+      <img [src]="post.imgPath" class="card-img-top" alt="xuy" />
+    </div>
+  </div>
 </body>
