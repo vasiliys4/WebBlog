@@ -31,7 +31,7 @@ namespace WebBlog.Server.RepositoryModel.IdentityRepository
 
         public async Task<User> GetByEmail(string email)
         {
-            var userEntity = await _context.Users.FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception("potomuchto");
+            var userEntity = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception("potomuchto");
             return _mapper.Map<User>(userEntity);
         }
     }

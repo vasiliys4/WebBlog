@@ -3,6 +3,6 @@
     public interface IPasswordHasher
     {
         string GeneratePassword(string password);
-        bool VerifyPasswordAsync(string password, string hashedPassword);
+        bool VerifyPassword(string password, string hashedPassword);
     }
 }

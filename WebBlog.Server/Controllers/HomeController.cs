@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebBlog.Server.Models.VIewModel;
 using WebBlog.Server.Services;
 
@@ -17,6 +18,7 @@ namespace WebBlog.Server.Controllers
             var posts = await _postServices.GetAllPostsAsync();
             return Ok(posts);
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {

@@ -22,9 +22,11 @@ namespace WebBlog.Server.Controllers
             return Ok(user);
         }
         [HttpPost("Login")]
-        public async Task<IActionResult> UserLogin(User user, UserService userService)
+        public async Task<IActionResult> UserLogin(User user, UserService userService, HttpContext context)
         {
             var token = await _userService.Login(user.Email, user.PasswordHash);
+
+            context.Response.Cookies.Append("cookies", token);
 
             return Ok(token);
         }

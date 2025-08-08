@@ -29,7 +29,7 @@ namespace WebBlog.Server.Services
         {
             var user = await _userRepository.GetByEmail(email);
 
-            var result = _passwordHasher.VerifyPasswordAsync(user.PasswordHash, password);
+            var result = _passwordHasher.VerifyPassword(password, user.PasswordHash);
 
             if (result == false) { }
 

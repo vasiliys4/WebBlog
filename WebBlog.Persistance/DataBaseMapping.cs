@@ -12,7 +12,7 @@ namespace WebBlog.Persistance
     {
         public DataBaseMapping() 
         {
-            CreateMap<User, UserEntity>();
+            CreateMap<UserEntity, User>();
         }
     }
 }
