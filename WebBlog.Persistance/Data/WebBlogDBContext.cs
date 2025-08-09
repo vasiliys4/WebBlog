@@ -9,7 +9,7 @@ namespace WebBlog.Server.Data
         public DbSet<ContentPost> ContentPosts { get; set; }
         public WebBlogDBContext(DbContextOptions<WebBlogDBContext> options) : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

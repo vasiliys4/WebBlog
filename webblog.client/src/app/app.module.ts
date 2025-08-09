@@ -11,8 +11,10 @@ import { PostCreateComponent } from './post-create.component';
 import { PostFormComponent } from './post-form.component';
 import { PostEditComponent } from './post-edit.component';
 import { NotFoundComponent } from './not-found.component';
+import {LayoutComponent} from "./app.layout-component";
 
 import { DataService } from './data.service';
+
 
 
 // определение маршрутов
@@ -27,7 +29,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, PostListComponent, PostSingleComponent, PostCreateComponent, PostFormComponent, PostEditComponent, NotFoundComponent],
+  declarations: [AppComponent,LayoutComponent, PostListComponent, PostSingleComponent, PostCreateComponent, PostFormComponent, PostEditComponent, NotFoundComponent],
   providers: [DataService], // регистрация сервисов
   bootstrap: [AppComponent]
 })

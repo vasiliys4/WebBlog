@@ -4,5 +4,6 @@ export class Post {
     public name?: string,
     public text?: string,
     public imgPath?: string,
-    public file?: File) { }
+    //public file?: File
+    ) { }
 }

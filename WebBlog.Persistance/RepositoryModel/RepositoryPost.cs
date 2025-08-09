@@ -44,7 +44,7 @@ namespace WebBlog.Server.RepositoryModel
             var oldPost = await _dbContext.Posts.FirstOrDefaultAsync(p => p.PostId == post.PostId);
             oldPost.Title = post.Title;
             oldPost.Content = post.Content;
-            oldPost.Author = post.Author;
+            //oldPost.Author = post.Author;
             await _dbContext.SaveChangesAsync();
             return post;
         }

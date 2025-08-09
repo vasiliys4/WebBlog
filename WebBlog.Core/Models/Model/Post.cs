@@ -6,7 +6,7 @@ namespace WebBlog.Server.Models.Model
     {
         public int PostId { get; set; }
         public string? Title { get; set; }
-        public User? Author { get; set; }
+        //public User? Author { get; set; }
         public ContentPost? Content { get; set; }
         
     }

@@ -1,0 +1,72 @@
+<div class="d-flex flex-column min-vh-100 bg-light font-sf">
+  <!-- HEADER -->
+  <header class="header bg-white border-bottom shadow-sm px-4 py-2 d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-apple fs-3 text-dark"></i>
+      <nav *ngIf="!isMobile" class="navbar navbar-expand-lg bg-body-tertiary">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#" class="nav-link">Главная</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Тренды</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Сообщения</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div>
+      <ng-container *ngIf="!isAuthenticated; else loggedIn">
+        <button class="btn btn-outline-primary rounded-pill px-3" (click)="login()">Войти</button>
+      </ng-container>
+      <ng-template #loggedIn>
+        <div class="dropdown">
+          <button class="btn btn-light rounded-circle border" data-bs-toggle="dropdown">
+            <i class="bi bi-person"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Профиль</a></li>
+            <li><a class="dropdown-item" href="#" (click)="logout()">Выйти</a></li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="d-flex flex-grow-1">
+    <!-- Sidebar -->
+    <aside class="sidebar border-end bg-white" *ngIf="!isMobile">
+      <ul class="nav flex-column text-center mt-4">
+        <li class="mb-4"><i class="bi bi-house fs-3"></i></li>
+        <li class="mb-4"><i class="bi bi-search fs-3"></i></li>
+        <li class="mb-4"><i class="bi bi-bell fs-3"></i></li>
+        <li><i class="bi bi-person fs-3"></i></li>
+      </ul>
+    </aside>
+
+    <!-- Main Feed -->
+    <main class="flex-grow-1 p-4">
+      <div class="post-card fade-element p-4 mb-4 bg-white rounded-4 shadow-sm">
+        <h5 class="fw-semibold mb-3">Заголовок поста</h5>
+        <p>Пример Apple-минимализма в дизайне. Чистые линии, большие отступы, мягкие тени.</p>
+      </div>
+      <div class="post-card fade-element p-4 mb-4 bg-white rounded-4 shadow-sm">
+        <h5 class="fw-semibold mb-3">Ещё один пост</h5>
+        <p>Синие акценты, плавные анимации, аккуратные шрифты.</p>
+      </div>
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Trends -->
+    <aside class="trends border-start bg-light" *ngIf="!isMobile">
+      <div class="bg-white p-4 rounded-4 shadow-sm mt-4 fade-element">
+        <h6 class="fw-semibold mb-3">Тренды</h6>
+        <p class="mb-1 text-primary">#iOS18</p>
+        <p class="mb-1 text-primary">#MacBookPro</p>
+        <p class="text-primary">#AppleEvent</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer bg-white border-top py-3 px-4 text-muted small text-center">
+    © 2025 MyAppleSocial. Все права защищены.
+  </footer>
+</div>

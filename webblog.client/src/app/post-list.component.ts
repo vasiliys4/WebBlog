@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.scss'],
   providers: [DataService]
 })
 export class PostListComponent implements OnInit {
