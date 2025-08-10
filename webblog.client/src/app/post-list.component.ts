@@ -23,7 +23,7 @@ export class PostListComponent implements OnInit {
   }
   delete(id?: number) {
     this.dataService.deletePost(id!).subscribe(_ => {
-      this.statusMessage = "Данные успешно удалены",
+      this.statusMessage = "Данные успешно удалены"
         this.load();
     });
   }

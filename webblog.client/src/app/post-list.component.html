@@ -1,18 +1,13 @@
 <ng-container *ngFor="let post of posts">
   <div class="post-card fade-element p-4 mb-4 bg-white rounded-4 shadow-sm">
-    <a [routerLink]="['post', post.id]" class="fw-semibold mb-3"><h5>post {{post.name}}</h5></a>
+    <a [routerLink]="['post', post.id]" class="w-semibold mb-3 btn" data-bs-toggle="button"><h5>{{post.name}}</h5></a>
     <p>{{post.text}}</p>
     <!--<img src={{ post.imgPath }}/>-->
-  </div>
-  <div>
-    <a [routerLink]="['edit',post.id]" class="btn btn-sm btn-primary">Изменить</a>
-    <button (click)="delete(post.id)" class="btn btn-sm btn-danger">Удалить</button>
+    <div >
+      <button [routerLink]="['edit',post.id]" class="btn" data-bs-toggle="button">Изменить</button>
+      <button (click)="delete(post.id)" class="btn" data-bs-toggle="button">Удалить</button>
+    </div>
   </div>
 </ng-container>
 
-<a routerLink="/create" class="nav-link">Добавить</a>
-
-<div class="post-card fade-element p-4 mb-4 bg-white rounded-4 shadow-sm">
-  <h5 class="fw-semibold mb-3">Заголовок поста</h5>
-  <p>Пример Apple-минимализма в дизайне. Чистые линии, большие отступы, мягкие тени.</p>
-</div>
+<button [routerLink]="['create']" type="button" class="btn" data-bs-toggle="button">Добавить</button>
