@@ -1,24 +1,24 @@
-<header class="d-flex align-items-center justify-content-between px-3 border-bottom bg-light">
-    <a href="/" class="fw-bold font-sf">Social</a>
-
-    <!-- Навигация только для десктопа -->
-    <nav class="d-none d-md-block">
-        <a class="nav-link d-inline px-2" href="#">Главная</a>
-        <a class="nav-link d-inline px-2" href="#">Профиль</a>
-        <a class="nav-link d-inline px-2" href="#">Сообщения</a>
+<header class="header">
+  <div class="container">
+    <div class="logo">MyApp</div>
+    <nav [class.open]="mobileMenuOpen" class="nav">
+      <a routerLink="/" (click)="closeMobileMenu()">Главная</a>
+      <a routerLink="/posts" (click)="closeMobileMenu()">Посты</a>
+      <a routerLink="/about" (click)="closeMobileMenu()">О нас</a>
+      <a *ngIf="!isAuthenticated" routerLink="/login" (click)="closeMobileMenu()">Вход</a>
+      <a *ngIf="isAuthenticated" (click)="logout()">Выход</a>
     </nav>
-
-    <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-outline-secondary" (click)="toggleTheme()">
-            {{ isDarkMode ? '☀️ Светлая' : '🌙 Тёмная' }}
-        </button>
-        <button class="btn btn-primary btn-sm">Войти</button>
-
-        <!-- Кнопка меню для мобилок -->
-        <button class="btn btn-outline-secondary btn-sm d-md-none" (click)="toggleMobileMenu()">
-            ☰
-        </button>
+    <div class="actions">
+      <button class="theme-btn" (click)="toggleTheme()" aria-label="Переключить тему">
+        {{ isDarkMode ? '☀️' : '🌙' }}
+      </button>
+      <button class="menu-btn" *ngIf="isMobile" (click)="toggleMobileMenu()" aria-label="Меню">
+        ☰
+        <span [class.open]="mobileMenuOpen"></span>
+      </button>
     </div>
+  </div>
+  <div class="overlay" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()"></div>
 </header>
 
 <div class=" container-fluid">
@@ -47,20 +47,22 @@
     </div>
 </div>
 
+<!-- ===== Мобильное меню ===== -->
+<div class="mobile-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
+  <div class="menu-content" (click)="$event.stopPropagation()">
+    <div class="menu-header">
+      <span class="fw-bold font-sf">Меню</span>
+      <button class="btn-close" (click)="toggleMobileMenu()"></button>
+    </div>
+    <a class="nav-link" href="/">Главная</a>
+    <a class="nav-link" href="#">Профиль</a>
+    <a class="nav-link" href="#">Сообщения</a>
+    <a class="nav-link" href="#">Настройки</a>
+  </div>
+</div>
+
 <footer class="border-top bg-light text-center py-2">
     <small class="text-muted">© 2025 Social</small>
 </footer>
 
-<!-- ===== Мобильное меню ===== -->
-<div class="mobile-menu" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()">
-    <div class="menu-content" (click)="$event.stopPropagation()">
-        <div class="menu-header">
-            <span class="fw-bold font-sf">Меню</span>
-            <button class="btn-close" (click)="toggleMobileMenu()"></button>
-        </div>
-        <a class="nav-link" href="#">Главная</a>
-        <a class="nav-link" href="#">Профиль</a>
-        <a class="nav-link" href="#">Сообщения</a>
-        <a class="nav-link" href="#">Настройки</a>
-    </div>
-</div>
+

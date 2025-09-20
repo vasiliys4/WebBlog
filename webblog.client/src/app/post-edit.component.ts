@@ -4,7 +4,8 @@ import { DataService } from './data.service';
 import { Post } from './post';
 
 @Component({
-  templateUrl: './post-edit.component.html'
+  templateUrl: './post-edit.component.html',
+  providers: [DataService]
 })
 export class PostEditComponent implements OnInit {
 
@@ -17,15 +18,28 @@ export class PostEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.id)
+    if (this.id) {
       this.dataService.getPost(this.id)
-        .subscribe((data: Post) => {
-          this.post = data;
-          if (this.post != null) this.loaded = true;
+        .subscribe({
+          next: (data: Post) => {
+            console.log('Получен пост:', data);
+            this.post = data;
+            this.loaded = !!this.post;
+          },
+          error: err => {
+            console.error('Ошибка загрузки поста', err);
+          }
         });
+    }
   }
 
   save() {
-    this.dataService.editPost(this.post).subscribe(data => this.router.navigateByUrl("/"));
+    if (!this.loaded || !this.post) {
+      console.error('Данные поста ещё не загружены.');
+      return;
+    }
+
+    this.dataService.editPost(this.post, this.id)
+      .subscribe(() => this.router.navigateByUrl("/"));
   }
 }

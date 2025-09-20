@@ -4,10 +4,9 @@
     <p>{{post.text}}</p>
     <!--<img src={{ post.imgPath }}/>-->
     <div >
-      <button [routerLink]="['edit',post.id]" class="btn" data-bs-toggle="button">Изменить</button>
-      <button (click)="delete(post.id)" class="btn" data-bs-toggle="button">Удалить</button>
+      <a [routerLink]="['edit',post.id]" class="btn" data-bs-toggle="button">Изменить</a>
+      <a (click)="delete(post.id)" class="btn" data-bs-toggle="button">Удалить</a>
     </div>
   </div>
 </ng-container>
-
-<button [routerLink]="['create']" type="button" class="btn" data-bs-toggle="button">Добавить</button>
+<a [routerLink]="['create']" type="button" class="btn" data-bs-toggle="button">Добавить</a>

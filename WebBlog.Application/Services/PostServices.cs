@@ -40,9 +40,9 @@ namespace WebBlog.Server.Services
         {
             await repositoryPost.DeletePost(id);
         }
-        public async Task<PostViewModel> UpdatePostAsync(PostViewModel postView)
+        public async Task<PostViewModel> UpdatePostAsync(PostViewModel postView, int id)
         {
-            await repositoryPost.UpdatePost(postView.ToPost());
+            await repositoryPost.UpdatePost(postView.ToPost(), id);
             return postView;
         }
     }

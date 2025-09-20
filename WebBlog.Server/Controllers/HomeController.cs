@@ -18,11 +18,14 @@ namespace WebBlog.Server.Controllers
             var posts = await _postServices.GetAllPostsAsync();
             return Ok(posts);
         }
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
             var post = await _postServices.GetPostAsync(id);
+            if (post == null)
+            {
+                return BadRequest();
+            }
             return Ok(post);
         }
         [HttpPost]
@@ -31,10 +34,15 @@ namespace WebBlog.Server.Controllers
             await _postServices.CreatePostAsync(post);
             return Ok(post);
         }
-        [HttpPatch]
-        public async Task<IActionResult> EditPost(PostViewModel post)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> EditPost([FromBody] PostViewModel post,[FromRoute] int id)
         {
-            await _postServices.UpdatePostAsync(post);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            await _postServices.UpdatePostAsync(post, id);
             return Ok(post);
         }
         [HttpDelete("{id}")]

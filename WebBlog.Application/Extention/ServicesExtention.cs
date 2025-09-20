@@ -1,4 +1,5 @@
-﻿using WebBlog.Server.Models.Model;
+﻿using WebBlog.Server.Models.IdentityModel;
+using WebBlog.Server.Models.Model;
 using WebBlog.Server.Models.VIewModel;
 
 namespace WebBlog.Server.Extention
@@ -31,5 +32,6 @@ namespace WebBlog.Server.Extention
                 Content = content,
             };
         }
+        
     }
 }

@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
+  selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
-  providers: [DataService]
+  providers: [DataService],
 })
 export class PostListComponent implements OnInit {
 

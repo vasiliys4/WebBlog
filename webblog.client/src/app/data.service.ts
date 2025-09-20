@@ -7,7 +7,7 @@ import { MessageService } from './message.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
- 
+
   private url = 'https://localhost:7236/api/home';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,8 +24,8 @@ export class DataService {
   createPost(post: Post) {
     return this.https.post(this.url, post);
   }
-  editPost(post: Post) {
-    return this.https.patch(this.url, post);
+  editPost(post: Post, id: number) {
+    return this.https.patch(this.url + '/' + id, post, this.httpOptions);
   }
   deletePost(id: number): Observable<Post> {
     return this.https.delete<Post>(this.url + '/' + id);

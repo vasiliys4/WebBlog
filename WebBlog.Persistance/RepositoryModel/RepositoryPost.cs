@@ -39,9 +39,9 @@ namespace WebBlog.Server.RepositoryModel
             return await _dbContext.Posts.Include(p => p.Content).FirstOrDefaultAsync(p => p.PostId == id);
         }
 
-        public async Task<Post> UpdatePost(Post post)
+        public async Task<Post> UpdatePost(Post post, int id)
         {
-            var oldPost = await _dbContext.Posts.FirstOrDefaultAsync(p => p.PostId == post.PostId);
+            var oldPost = await GetPostById(id);
             oldPost.Title = post.Title;
             oldPost.Content = post.Content;
             //oldPost.Author = post.Author;

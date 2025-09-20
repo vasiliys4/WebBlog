@@ -1,0 +1,268 @@
+.font-sf {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body,
+header,
+aside,
+main,
+footer,
+.nav-link,
+.btn,
+.dropdown-menu {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ===== Хедер ===== */
+header {
+  height: 60px;
+}
+
+/* ===== Мобильное меню ===== */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: none;
+  justify-content: flex-end;
+  flex-direction: column;
+  z-index: 1050;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.menu-content {
+  background-color: var(--bs-light);
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  animation: slideUp 0.3s ease;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ===== Темы ===== */
+:root {
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #000000;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-border-color: #dee2e6;
+
+  --bs-primary: #007bff;
+  --bs-secondary: #6c757d;
+}
+
+body.dark-mode {
+  --bs-body-bg: #121212;
+  --bs-body-color: #f8f9fa;
+  --bs-light: #1e1e1e;
+  --bs-dark: #e0e0e0;
+  --bs-border-color: #444;
+
+  --bs-primary: #4dabf7;
+  --bs-secondary: #999;
+}
+
+body {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  transition: background 0.3s ease, color 0.3s ease;
+
+  .container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav {
+    display: flex;
+    gap: 16px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s;
+      &:hover {
+        color: #00bfa5;
+      }
+    }
+
+    @media (max-width: 767px) {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      flex-direction: column;
+      background: var(--bg);
+      width: 70%;
+      height: 100%;
+      padding: 80px 20px;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+      transition: right 0.4s ease;
+      opacity: 0;
+      visibility: hidden;
+
+      &.open {
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      a {
+        opacity: 0;
+        transform: translateX(30px);
+        font-size: 18px;
+        margin-bottom: 16px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      &.open a {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      &.open a:nth-child(1) { transition-delay: 0.1s; }
+      &.open a:nth-child(2) { transition-delay: 0.2s; }
+      &.open a:nth-child(3) { transition-delay: 0.3s; }
+      &.open a:nth-child(4) { transition-delay: 0.4s; }
+      &.open a:nth-child(5) { transition-delay: 0.5s; }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .theme-btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    transition: transform 0.2s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .menu-btn {
+    position: relative;
+    width: 28px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      position: relative;
+      width: 100%;
+      height: 2px;
+      background: var(--text);
+      display: inline-block;
+      transition: all 0.3s ease;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        transition: all 0.3s ease;
+      }
+
+      &::before {
+        top: -8px;
+      }
+      &::after {
+        top: 8px;
+      }
+
+      &.open {
+        background: transparent;
+
+        &::before {
+          transform: rotate(45deg);
+          top: 0;
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+          top: 0;
+        }
+      }
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --text: #000000;
+}
+
+:root[data-theme='dark'] {
+  --bg: #121212;
+  --text: #ffffff;
+}
+
+.fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-element {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+
+

@@ -1,4 +1,5 @@
 ﻿using WebBlog.Server.Models.IdentityModel;
+using WebBlog.Server.Models.VIewModel;
 using WebBlog.Server.RepositoryModel.IdentityRepository;
 
 
@@ -20,16 +21,17 @@ namespace WebBlog.Server.Services
         {
             var hashedPassword = _passwordHasher.GeneratePassword(password);
 
-            var user = User.Create(Guid.NewGuid(), userName, hashedPassword, email);
+            var user = User.Create(Guid.NewGuid().ToString(), userName, hashedPassword, email);
 
             await _userRepository.AddUser(user);
         }
 
-        public async Task<string> Login(string email, string password)
+        public async Task<string> Login(UserViewModel userVM)
         {
-            var user = await _userRepository.GetByEmail(email);
+            
+            var user = await _userRepository.GetByEmail(userVM.email);
 
-            var result = _passwordHasher.VerifyPassword(password, user.PasswordHash);
+            var result = _passwordHasher.VerifyPassword(userVM.password, user.PasswordHash);
 
             if (result == false) { }
 

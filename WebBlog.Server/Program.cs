@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
 using PaswordHasher;
 using WebBlog.Application.Interfaces;
@@ -56,6 +57,13 @@ app.UseCors(x => x
             .WithMethods("DELETE","POST","GET","PATCH"));
 
 app.UseHttpsRedirection();
+
+app. UseCookiePolicy(new CookiePolicyOptions
+{
+MinimumSameSitePolicy = SameSiteMode. Strict,
+HttpOnly = HttpOnlyPolicy.Always,
+Secure = CookieSecurePolicy. Always
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

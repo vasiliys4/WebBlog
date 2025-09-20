@@ -1,13 +1,13 @@
-import { Component, HostListener, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, HostListener, AfterViewInit, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './app.layout-component.html',
   styleUrls: ['./app.layout-component.scss']
 })
-export class LayoutComponent implements AfterViewInit {
+export class LayoutComponent implements OnInit, AfterViewInit {
   isMobile = false;
-  isAuthenticated = false; // заменить логикой авторизации
+  isAuthenticated = false;
   isDarkMode = false;
   mobileMenuOpen = false;
 
@@ -16,47 +16,59 @@ export class LayoutComponent implements AfterViewInit {
   }
 
   ngOnInit() {
-    // Автоподстройка под системную тему
-    this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Загружаем тему из localStorage или из системных настроек
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.isDarkMode = savedTheme === 'dark';
+    } else {
+      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
     this.applyTheme();
 
+    // Реакция на смену системной темы
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      this.isDarkMode = e.matches;
-      this.applyTheme();
+      if (!localStorage.getItem('theme')) { // если пользователь не выбрал явно
+        this.isDarkMode = e.matches;
+        this.applyTheme();
+      }
     });
+
+    // Проверка авторизации по localStorage (JWT)
+    this.isAuthenticated = !!localStorage.getItem('authToken');
   }
 
   toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    this.isDarkMode = !this.isDarkMode;
+    this.applyTheme();
+    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
   }
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
   }
 
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
+  }
+
   applyTheme() {
-    const body = document.body;
-    if (this.isDarkMode) {
-      body.classList.add('dark-mode');
-    } else {
-      body.classList.remove('dark-mode');
-    }
+    document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
   }
 
   @HostListener('window:resize')
   checkScreenSize() {
     this.isMobile = window.innerWidth < 768;
+    if (!this.isMobile) this.mobileMenuOpen = false;
   }
 
-  login() {
-    this.isAuthenticated = true; // пример
+  login(token: string) {
+    localStorage.setItem('authToken', token);
+    this.isAuthenticated = true;
   }
 
   logout() {
-    this.isAuthenticated = false; // пример
+    localStorage.removeItem('authToken');
+    this.isAuthenticated = false;
   }
 
   ngAfterViewInit() {

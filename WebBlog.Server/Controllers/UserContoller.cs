@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebBlog.Server.Models.IdentityModel;
+using WebBlog.Server.Models.VIewModel;
 using WebBlog.Server.Services;
 
 namespace WebBlog.Server.Controllers
@@ -15,20 +16,31 @@ namespace WebBlog.Server.Controllers
             _userService = userService;
         }
         [HttpPost("Register")]
-        public async Task<IActionResult> UserRegister(UserService userService, User user)
+        public async Task<IActionResult> UserRegister([FromBody] UserViewModel user)
         {
-            await _userService.Register(user.UserName, user.Email, user.PasswordHash);
+            await _userService.Register(user.userName, user.email, user.password);
 
             return Ok(user);
         }
         [HttpPost("Login")]
-        public async Task<IActionResult> UserLogin(User user, UserService userService, HttpContext context)
+        public async Task<IActionResult> UserLogin([FromBody] UserViewModel user)
         {
-            var token = await _userService.Login(user.Email, user.PasswordHash);
+            if (user == null || string.IsNullOrEmpty(user.email) || string.IsNullOrEmpty(user.password))
+                return BadRequest("Invalid user data");
 
-            context.Response.Cookies.Append("cookies", token);
+            var token = await _userService.Login(user);
 
-            return Ok(token);
+            if (string.IsNullOrEmpty(token))
+                return Unauthorized("Invalid credentials");
+
+            HttpContext.Response.Cookies.Append("tasty-cookies", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict
+            });
+
+            return Ok(new { token });
         }
     }
 }
